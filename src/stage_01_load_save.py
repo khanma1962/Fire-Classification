@@ -26,7 +26,7 @@ def copy_file(source_download_dir, local_data_dir):
         src  = os.path.join(source_download_dir, file)
         dest = os.path.join(local_data_dir, file)
         shutil.copyfile(src, dest)
-        logging.info(f"All files has been moved from {source_download_dir} to {local_data_dir}")
+    logging.info(f"All files has been moved from {source_download_dir} to {local_data_dir}")
 
 
 def get_data(config_path):
