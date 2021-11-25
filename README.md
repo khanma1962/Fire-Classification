@@ -1,1 +1,3 @@
-# Fire-Classification-and-Detection
+# End to End Pipeline for Fire Classifcation
+
+
