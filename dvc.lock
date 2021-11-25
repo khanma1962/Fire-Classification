@@ -1,0 +1,23 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/stage_01_load_save.py --config=config/configs.yaml
+    deps:
+    - path: config/configs.yaml
+      md5: f2f6ef2b1ba77cf579299311ab6aac21
+      size: 459
+    - path: src/stage_01_load_save.py
+      md5: 304f17351bbc7ea28946f12ca8b2d1a2
+      size: 1885
+    - path: src/utils/all_utils.py
+      md5: bfffa6221e5c769b1f8cb1cf22c43ae2
+      size: 533
+    outs:
+    - path: data/Fire
+      md5: e6c72717a91e6e716aba843a258b1890.dir
+      size: 8318853
+      nfiles: 1000
+    - path: data/No_Fire
+      md5: 22de0fc319464e58f444685ee8f4e429.dir
+      size: 347438893
+      nfiles: 1015
