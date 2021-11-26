@@ -47,8 +47,9 @@ if __name__ == "__main__":
     parsed_args = args.parse_args()
 
     try:
-        logging.info(f"Stage {stage_no} has been started")
+        logging.info(f"/n>>>>>Stage {stage_no} has been started")
         get_data(config_path= parsed_args.config)
+        logging.info(f"Stage {stage_no} has been completed")
 
     except Exception as e:
         logging.exception(e)
