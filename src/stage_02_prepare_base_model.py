@@ -46,13 +46,21 @@ def prepare_base_model(config_path, param_path):
             learning_rate = 0.001 
             )
 
+    updated_base_model_dir = os.path.join( artifacts_dir, artifacts['UPDATED_BASE_MODEL_DIR'])
     updated_base_model_path = os.path.join(
-            base_model_dir_path, 
+            updated_base_model_dir, 
             artifacts['UPDATED_BASE_MODEL_NAME']
             )
     
-    logging.info(f"{full_model.summary()}")
+    # print(f"updated base model path is {updated_base_model_path}") # this will print only in terminal not in log
+    def _log_model_summary(full_model):
+        with io.StringIO() as stream:
+            full_model.summary(print_fn=lambda x:stream.write(f"{x}\n"))
+            summary_string = stream.getvalue()
+        
+        return summary_string
 
+    logging.info(f"full model summary : \n{_log_model_summary(full_model)}")
 
     full_model.save(updated_base_model_path)
 
@@ -65,9 +73,9 @@ if __name__ == "__main__":
     parsed_args = args.parse_args()
 
     try:
-        logging.info(f"/n>>>>>Stage {stage_no} has been started")
+        logging.info(f"\n>>>>>Stage {stage_no} has been started")
         prepare_base_model(config_path= parsed_args.config, param_path=parsed_args.params)
-        logging.info(f"/n>>>>>Stage {stage_no} has been completed")
+        logging.info(f"Stage {stage_no} has been completed")
 
     except Exception as e:
         logging.exception(e)
