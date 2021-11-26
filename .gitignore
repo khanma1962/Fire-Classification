@@ -141,10 +141,10 @@ config/secrets.yaml
 data/
 outside_data/
 
-artifacts/base_moodel/VGG16_base_model.h5
-artifacts/base_moodel/updated_VGG16_base_model.h5
+# artifacts/base_moodel/VGG16_base_model.h5
+# artifacts/base_moodel/updated_VGG16_base_model.h5
 
 
-artifacts/base_moodel/updated_VGG16_base_model.h5
-artifacts/base_moodel/VGG16_base_model.h5
+# artifacts/base_moodel/updated_VGG16_base_model.h5
+# artifacts/base_moodel/VGG16_base_model.h5
 
