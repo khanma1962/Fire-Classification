@@ -19,9 +19,9 @@ os.makedirs(log_dir, exist_ok=True)
 logging.basicConfig(filename= os.path.join(log_dir, "runnning.log"), level= logging.INFO, format=logging_str, filemode="a")
 
 
-def prepare_base_model(config_path, param_path):
+def prepare_base_model(config_path, params_path):
     config = read_yaml(config_path)
-    params = read_yaml(param_path)
+    params = read_yaml(params_path)
 
     artifacts = config['artifacts']
     artifacts_dir = artifacts['ARTIFACTS_DIR']
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
     try:
         logging.info(f"\n>>>>>Stage {stage_no} has been started")
-        prepare_base_model(config_path= parsed_args.config, param_path=parsed_args.params)
+        prepare_base_model(config_path= parsed_args.config, params_path=parsed_args.params)
         logging.info(f"Stage {stage_no} has been completed")
 
     except Exception as e:
