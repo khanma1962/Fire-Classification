@@ -10,8 +10,8 @@ stages:
       md5: 26c63d801c726742582b2500a790bc5a
       size: 1953
     - path: src/utils/all_utils.py
-      md5: bfffa6221e5c769b1f8cb1cf22c43ae2
-      size: 533
+      md5: 44c9e629980b29396410fc8fe26f9331
+      size: 785
     outs:
     - path: data/Fire
       md5: e6c72717a91e6e716aba843a258b1890.dir
@@ -31,11 +31,11 @@ stages:
       md5: ac8ef0d6d8e181065bac57981fbdefb6
       size: 125
     - path: src/stage_02_prepare_base_model.py
-      md5: 7da746ec33c43e2912159a1d15e89cb9
-      size: 2616
+      md5: 1afbc2eea53c407dbfd86e5df2e9e1cb
+      size: 2619
     - path: src/utils/all_utils.py
-      md5: bfffa6221e5c769b1f8cb1cf22c43ae2
-      size: 533
+      md5: 44c9e629980b29396410fc8fe26f9331
+      size: 785
     - path: src/utils/models.py
       md5: 0e2b23a869d543c8bb6e1287dd6e4cab
       size: 1429
@@ -50,8 +50,33 @@ stages:
         LEARNING_RATE: 0.001
     outs:
     - path: artifacts/base_model/VGG16_base_model.h5
-      md5: 9f128405f4ef48d5c2186d2cf4c85079
+      md5: bc66c59fc8287d56bdd76a3072cd6c43
       size: 58920272
     - path: artifacts/updated_model/updated_VGG16_base_model.h5
-      md5: dda0984b006873f10254622beebb8be8
+      md5: bb4b28cb0196babd5cd16d4edb9a8af3
       size: 59132008
+  prepare_callbacks:
+    cmd: python src/stage_03_prepare_callbacks.py --config=config/configs.yaml --params=params.yaml
+    deps:
+    - path: config/configs.yaml
+      md5: 144367b49bccb4997419fbb0c13ee631
+      size: 499
+    - path: params.yaml
+      md5: ac8ef0d6d8e181065bac57981fbdefb6
+      size: 125
+    - path: src/stage_03_prepare_callbacks.py
+      md5: 6214d0f516646d78d8c26237e6521e2a
+      size: 1767
+    - path: src/utils/all_utils.py
+      md5: 44c9e629980b29396410fc8fe26f9331
+      size: 785
+    - path: src/utils/callbacks.py
+      md5: 341a5479b30691a2ee9c2c8698f7a28a
+      size: 1174
+    outs:
+    - path: artifacts/callbacks/checkpoints_cb.cb
+      md5: 542dea3e5edae32d3a2701bdf41d1239
+      size: 869
+    - path: artifacts/callbacks/tensorboard_cb.cb
+      md5: a9c6e1689ebb8151894ff672646fdef2
+      size: 682
