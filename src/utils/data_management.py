@@ -35,6 +35,7 @@ def train_valid_generator(data_dir, IMAGE_SIZE , BATCH_SIZE , do_data_augmentati
             zoom_range = 0.2,
             **datagenerator_kwarg
         )
+        logging.info("Augumentation is used for training")
     else:
         train_datagenerator = valid_datagenerator
         logging.info(f"Augumentation is NOT used here")
