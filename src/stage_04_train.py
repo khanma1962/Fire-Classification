@@ -2,10 +2,10 @@
 import os
 import argparse
 import logging
-from typing import Tuple
 from src.utils.all_utils import read_yaml, create_dir
 from src.utils.callbacks import get_callbacks
-from src.utils.models import load_full_model #, get_unique_filename_to_save_model
+from src.utils.models import load_full_model , get_unique_filename_to_save_model
+from src.utils.data_management import train_valid_generator
 
 
 stage_no = 'Four'
@@ -36,12 +36,35 @@ def train_model(config_path, params_path):
     train_generator, valid_generator = train_valid_generator(
                 data_dir = artifacts['DATA_DIR'],
                 IMAGE_SIZE = tuple(params['IMAGE_SIZE'][:-1]), # takinf only 224, 224 from [224, 224, 3]
-                BATCH_SIZE = artifacts['BATCH_SIZE']
-                do_data_augmentation = artifacts['AUGMENTATION']
+                BATCH_SIZE = params['BATCH_SIZE'],
+                do_data_augmentation = params['AUGMENTATION']
             )
 
+    steps_per_epoch = train_generator.samples // train_generator.batch_size
+    validation_steps = valid_generator.samples // valid_generator.batch_size
+    # steps_per_epoch = train_generator.samples // train_generator.batch_size
+    # validation_steps = valid_generator.samples // valid_generator.batch_size
 
+    model.fit(
+                train_generator,
+                validation_data = valid_generator,
+                epochs = params['EPOCHS'],
+                steps_per_epoch = steps_per_epoch,
+                validation_steps = validation_steps,
+                callbacks = callbacks
+        )
 
+    logging.info("Training completed")
+
+    trained_model_dir = os.path.join(artifacts_dir, artifacts['TRAINED_MODEL_DIR'])
+    create_dir([trained_model_dir])
+
+    model_file_name = get_unique_filename_to_save_model(trained_model_dir)
+    complete_model_path = os.path.join(trained_model_dir, model_file_name)
+
+    model.save(complete_model_path)
+
+    logging.info(f"Model has been saved at {complete_model_path}")
 
 
 

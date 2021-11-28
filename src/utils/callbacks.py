@@ -32,7 +32,7 @@ def get_callbacks(callbacks_dir_path):
                 os.path.join(callbacks_dir_path, bin_path) for bin_path in os.listdir(callbacks_dir_path) if bin_path.endswith(".cb")
             ]
     callbacks = [
-        os.path.join(path) for path in callbacks_path
+        joblib.load(path) for path in callbacks_path
             ]
     logging.info(f"Saved callbacks are loaded from {callbacks_dir_path}")
 
