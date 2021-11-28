@@ -150,3 +150,4 @@ outside_data/
 # artifacts/callbacks/checkpoints_cb.cb
 # artifacts/callbacks/tensorboard_cb.cb
 artifacts/tensorboard_log_dir/tb_logs_at_Fri_Nov_26_02_54_52_2021/validation/events.out.tfevents.1638079600.Moes-MacBook-Pro.local.73760.1406.v2
+artifacts/checkpoints/ckpt_model.h5
